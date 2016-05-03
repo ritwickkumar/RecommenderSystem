@@ -1,0 +1,104 @@
+Overview:
+
+Deliverables
+
+There are 4 deliverables for this assignment. Each deliverable represents a different analysis of the data provided to you. For each deliverable, you will submit a list of the top 5 movies as ranked by a particular metric. The 4 metrics are:
+
+1. Mean Rating: Calculate the mean rating for each movie, order with the highest rating listed first, and submit the top 5.
+2. Rating Count: Count the number of ratings for each movie, order with the most number of ratings first, and submit the top 5.
+3. % of ratings 4+: Calculate the percentage of ratings for each movie that are 4 or higher. Order with the highest percentage first, and submit the top 5.
+4. Top 5 Star Wars: Calculate movies that most often occur with Star Wars: Episode IV - A New Hope (1977) using the (x+y)/x method described in class. In other words, for each movie, calculate the percentage of Star Wars raters who also rated that movie. Order with the highest percentage first, and submit the top 5.
+Output Format
+
+For each part, you will need to enter your movie ID and scores into the appropriate quiz questions below.
+
+Notes
+
+You can either do this by hand or using a spreadsheet program.
+Blank cells mean there is no rating. Do not factor them into your calculations.
+Examples
+
+In order to check your calculations, the values for Raiders of the Lost Ark are:
+
+Mean: 2.91
+Rating Count: 11
+% of 4+: 27.2%
+Association with Star Wars Episode IV: 46.7%
+
+===================================================================================================================================================
+Quiz #1
+Mean Rating: Calculate the mean rating for each movie, order with the highest rating listed first, and submit the top 5.
+Ans: 318, 260, 541, 1265, 593
+Used R programming:
+> ratings = read.csv("A1Ratings.csv")
+> sort(colMeans(ratings,na.rm=TRUE),decreasing = TRUE)
+                                                    User                   X318..Shawshank.Redemption..The..1994.          X260..Star.Wars..Episode.IV...A.New.Hope..1977. 
+                                             3658.100000                                                 3.600000                                                 3.266667 
+                               X541..Blade.Runner..1982.                              X1265..Groundhog.Day..1993.                   X593..Silence.of.the.Lambs..The..1991. 
+                                                3.222222                                                 3.166667                                                 3.062500 
+X1210..Star.Wars..Episode.VI...Return.of.the.Jedi..1983.                        X2028..Saving.Private.Ryan..1998.                                X296..Pulp.Fiction..1994. 
+                                                3.000000                                                 3.000000                                                 3.000000 
+                           X527..Schindler.s.List..1993.                                         X34..Babe..1995.                                  X3578..Gladiator..2000. 
+                                                3.000000                                                 3.000000                                                 2.916667 
+                       X2396..Shakespeare.in.Love..1998.                    X1198..Raiders.of.the.Lost.Ark..1981.                                X2571..Matrix..The..1999. 
+                                                2.909091                                                 2.909091                                                 2.833333 
+                          X2762..Sixth.Sense..The..1999.                                     X1..Toy.Story..1995.                      X780..Independence.Day..ID4...1996. 
+                                                2.833333                                                 2.823529                                                 2.769231 
+                               X356..Forrest.Gump..1994.                                X1259..Stand.by.Me..1986.                               X2916..Total.Recall..1990. 
+                                                2.700000                                                 2.636364                                                 1.916667 
+ 
+
+===================================================================================================================================================
+Quiz #2
+Rating Count: Count the number of ratings for each movie, order with the most number of ratings first, and submit the top 5.
+Ans: 1, 593, 260, 1210, 780
+> sort(colSums(!is.na(ratings)),decreasing = TRUE)
+                                                    User                                     X1..Toy.Story..1995.                   X593..Silence.of.the.Lambs..The..1991. 
+                                                      20                                                       17                                                       16 
+         X260..Star.Wars..Episode.IV...A.New.Hope..1977. X1210..Star.Wars..Episode.VI...Return.of.the.Jedi..1983.                      X780..Independence.Day..ID4...1996. 
+                                                      15                                                       14                                                       13 
+                                 X3578..Gladiator..2000.                               X2916..Total.Recall..1990.                              X1265..Groundhog.Day..1993. 
+                                                      12                                                       12                                                       12 
+                               X2571..Matrix..The..1999.                            X527..Schindler.s.List..1993.                           X2762..Sixth.Sense..The..1999. 
+                                                      12                                                       12                                                       12 
+                       X2028..Saving.Private.Ryan..1998.                                X296..Pulp.Fiction..1994.                                X1259..Stand.by.Me..1986. 
+                                                      11                                                       11                                                       11 
+                       X2396..Shakespeare.in.Love..1998.                    X1198..Raiders.of.the.Lost.Ark..1981.                                X356..Forrest.Gump..1994. 
+                                                      11                                                       11                                                       10 
+                  X318..Shawshank.Redemption..The..1994.                                         X34..Babe..1995.                                X541..Blade.Runner..1982. 
+                                                      10                                                       10                                                        9 
+
+
+
+
+===================================================================================================================================================
+Quiz #3
+% of ratings 4+: Calculate the percentage of ratings for each movie that are 4 or higher. Order with the highest percentage first, and submit the top 5.
+Ans: 318, 260, 3578, 541, 593
+
+> sort(colMeans(ratings >= 4,na.rm=TRUE),decreasing = TRUE)
+                                                    User                   X318..Shawshank.Redemption..The..1994.          X260..Star.Wars..Episode.IV...A.New.Hope..1977. 
+                                              1.00000000                                               0.70000000                                               0.53333333 
+                                 X3578..Gladiator..2000.                                X541..Blade.Runner..1982.                   X593..Silence.of.the.Lambs..The..1991. 
+                                              0.50000000                                               0.44444444                                               0.43750000 
+                             X1265..Groundhog.Day..1993.                                X2571..Matrix..The..1999.                                         X34..Babe..1995. 
+                                              0.41666667                                               0.41666667                                               0.40000000 
+                       X2028..Saving.Private.Ryan..1998.                                X296..Pulp.Fiction..1994.                                X1259..Stand.by.Me..1986. 
+                                              0.36363636                                               0.36363636                                               0.36363636 
+X1210..Star.Wars..Episode.VI...Return.of.the.Jedi..1983.                                     X1..Toy.Story..1995.                            X527..Schindler.s.List..1993. 
+                                              0.35714286                                               0.35294118                                               0.33333333 
+                          X2762..Sixth.Sense..The..1999.                      X780..Independence.Day..ID4...1996.                                X356..Forrest.Gump..1994. 
+                                              0.33333333                                               0.30769231                                               0.30000000 
+                       X2396..Shakespeare.in.Love..1998.                    X1198..Raiders.of.the.Lost.Ark..1981.                               X2916..Total.Recall..1990. 
+                                              0.27272727                                               0.27272727                                               0.08333333 
+
+
+
+===================================================================================================================================================
+Quiz #4
+
+
+
+
+
+===================================================================================================================================================
