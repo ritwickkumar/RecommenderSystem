@@ -96,6 +96,27 @@ X1210..Star.Wars..Episode.VI...Return.of.the.Jedi..1983.                        
 
 ===================================================================================================================================================
 Quiz #4
+Top 5 Star Wars: Calculate movies that most often occur with Star Wars: Episode IV - A New Hope (1977) using the (x+y)/x method described in class. In other words, for each movie, calculate the percentage of Star Wars raters who also rated that movie. Order with the highest percentage first, and submit the top 5.
+Output Format
+Ans: Have used ratings[,2] because is the second column in the dataset
+1,1210,593,780,2916
+
+> sort(colSums(ratings[,2] & ratings,na.rm=TRUE)/sum(length(which(!is.na(ratings[,2])))),decreasing = TRUE)
+                                                    User          X260..Star.Wars..Episode.IV...A.New.Hope..1977.                                     X1..Toy.Story..1995. 
+                                               1.0000000                                                1.0000000                                                0.9333333 
+X1210..Star.Wars..Episode.VI...Return.of.the.Jedi..1983.                   X593..Silence.of.the.Lambs..The..1991.                      X780..Independence.Day..ID4...1996. 
+                                               0.8666667                                                0.8000000                                                0.7333333 
+                              X2916..Total.Recall..1990.                                  X3578..Gladiator..2000.                                X1259..Stand.by.Me..1986. 
+                                               0.6666667                                                0.6000000                                                0.6000000 
+                             X1265..Groundhog.Day..1993.                            X527..Schindler.s.List..1993.                           X2762..Sixth.Sense..The..1999. 
+                                               0.6000000                                                0.6000000                                                0.6000000 
+                               X356..Forrest.Gump..1994.                   X318..Shawshank.Redemption..The..1994.                        X2028..Saving.Private.Ryan..1998. 
+                                               0.5333333                                                0.5333333                                                0.5333333 
+                               X296..Pulp.Fiction..1994.                        X2396..Shakespeare.in.Love..1998.                                X2571..Matrix..The..1999. 
+                                               0.5333333                                                0.5333333                                                0.5333333 
+                   X1198..Raiders.of.the.Lost.Ark..1981.                                X541..Blade.Runner..1982.                                         X34..Babe..1995. 
+                                               0.4666667                                                0.4000000                                                0.4000000 
+> 
 
 
 
