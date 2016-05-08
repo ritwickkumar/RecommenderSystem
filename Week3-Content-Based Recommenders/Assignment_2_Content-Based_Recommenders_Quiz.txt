@@ -1,0 +1,262 @@
+Assignment 2: Content-Based Recommenders Quiz
+
+Data Preparation for using with R
+> keyword_space = read.csv("Assignment_2_Keyword_Space_Vector.csv")
+> user_profiles_input = read.csv("Assignment_2_User_Profiles.csv")
+> user_profiles_input[is.na(user_profiles_input)] = 0
+> str(keyword_space)
+'data.frame':   20 obs. of  10 variables:
+ $ baseball : int  1 0 0 0 0 1 0 0 0 0 ...
+ $ economics: int  0 1 0 0 1 0 0 0 0 1 ...
+ $ politics : int  1 1 0 1 0 0 0 1 0 0 ...
+ $ Europe   : int  0 1 1 1 0 1 0 1 0 0 ...
+ $ Asia     : int  1 0 1 0 0 0 0 0 0 1 ...
+ $ soccer   : int  1 0 1 0 0 0 0 0 1 0 ...
+ $ war      : int  0 0 0 1 0 0 0 1 0 1 ...
+ $ security : int  0 1 0 1 0 0 1 0 0 0 ...
+ $ shopping : int  0 0 0 0 1 0 0 0 1 0 ...
+ $ family   : int  1 0 0 0 1 0 1 1 0 0 ...
+> str(user_profiles_input)
+'data.frame':   20 obs. of  2 variables:
+ $ User.1: num  1 -1 0 0 0 1 0 0 0 0 ...
+ $ User.2: num  -1 1 0 1 0 0 0 0 0 0 ...
+ 
+ > computed_profile_user1 = colSums(user_profiles_input[,1]*keyword_space[,1:10])
+ > computed_profile_user2 = colSums(user_profiles_input[,2]*keyword_space[,1:10])
+ > computed_profile_user1
+  baseball economics  politics    Europe      Asia    soccer       war  security  shopping    family 
+         3        -2        -1         0         0         2        -1        -1         1         0 
+ > computed_profile_user2
+  baseball economics  politics    Europe      Asia    soccer       war  security  shopping    family 
+        -2         2         2         3        -1        -2         0         3         0        -1 
+> 
+
+==========================================================================================================================================================
+1. 
+Part 1
+
+Which document does the simple profile predict user 1 will like best?
+
+doc1
+
+doc2
+
+doc3
+
+doc4
+
+doc5
+
+doc6
+
+doc7
+
+doc8
+
+doc9
+
+doc10
+
+doc11
+
+doc12
+
+doc13
+
+doc14
+
+doc15
+
+doc16
+
+doc17
+
+doc18
+
+doc19
+
+doc20
+
+Ans: Document 16 with score 6
+> predict_liking_user1 = colSums((computed_profile_user1) * t(keyword_space))
+> predict_liking_user2 = colSums((computed_profile_user2) * t(keyword_space))
+> predict_liking_user1
+ [1]  4 -4  2 -3 -1  3 -1 -2  3 -3  0  4 -2 -2  0  6 -4  1 -4 -1
+> predict_liking_user2
+ [1] -4 10  0  8  1  1  2  4 -2  1  1 -4  7  7  4 -4 10  3  2  5
+> which.max(predict_liking_user1)
+[1] 16
+> predict_liking_user1[which.max(predict_liking_user1)]
+[1] 6
+
+==========================================================================================================================================================
+
+2. 
+What score does that prediction get?
+Ans: 6
+
+
+
+==========================================================================================================================================================
+
+3. How many documents does the model predict U2 will dislike (prediction score that is negative)?
+Ans: 4
+> sum(predict_liking_user2 < 0)
+[1] 4
+
+
+==========================================================================================================================================================
+
+4. 
+Part 2
+
+Which document is now in second with this new model?
+
+doc1
+
+doc2
+
+doc3
+
+doc4
+
+doc5
+
+doc6
+
+doc7
+
+doc8
+
+doc9
+
+doc10
+
+doc11
+
+doc12
+
+doc13
+
+doc14
+
+doc15
+
+doc16
+
+doc17
+
+doc18
+
+doc19
+
+doc20
+
+
+Ans Docuement 6
+
+> keyword_space_normalized = keyword_space/sqrt(rowSums(keyword_space))
+> keyword_space
+   baseball economics politics Europe Asia soccer war security shopping family
+1         1         0        1      0    1      1   0        0        0      1
+2         0         1        1      1    0      0   0        1        0      0
+3         0         0        0      1    1      1   0        0        0      0
+4         0         0        1      1    0      0   1        1        0      0
+5         0         1        0      0    0      0   0        0        1      1
+6         1         0        0      1    0      0   0        0        0      0
+7         0         0        0      0    0      0   0        1        0      1
+8         0         0        1      1    0      0   1        0        0      1
+9         0         0        0      0    0      1   0        0        1      0
+10        0         1        0      0    1      0   1        0        0      0
+11        0         0        1      0    1      0   0        0        1      0
+12        1         0        0      0    0      1   1        0        0      0
+13        0         0        1      1    1      0   0        1        0      0
+14        0         1        1      1    0      0   0        0        1      0
+15        0         0        0      1    0      1   1        1        0      0
+16        1         0        0      0    0      1   0        0        1      0
+17        0         1        1      1    0      0   0        1        0      0
+18        0         0        0      1    0      0   0        0        1      0
+19        0         1        1      0    1      0   1        0        0      1
+20        0         0        1      1    0      0   1        0        1      0
+> keyword_space_normalized
+    baseball economics  politics    Europe      Asia    soccer       war  security  shopping    family
+1  0.4472136 0.0000000 0.4472136 0.0000000 0.4472136 0.4472136 0.0000000 0.0000000 0.0000000 0.4472136
+2  0.0000000 0.5000000 0.5000000 0.5000000 0.0000000 0.0000000 0.0000000 0.5000000 0.0000000 0.0000000
+3  0.0000000 0.0000000 0.0000000 0.5773503 0.5773503 0.5773503 0.0000000 0.0000000 0.0000000 0.0000000
+4  0.0000000 0.0000000 0.5000000 0.5000000 0.0000000 0.0000000 0.5000000 0.5000000 0.0000000 0.0000000
+5  0.0000000 0.5773503 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.5773503 0.5773503
+6  0.7071068 0.0000000 0.0000000 0.7071068 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+7  0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.7071068 0.0000000 0.7071068
+8  0.0000000 0.0000000 0.5000000 0.5000000 0.0000000 0.0000000 0.5000000 0.0000000 0.0000000 0.5000000
+9  0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.7071068 0.0000000 0.0000000 0.7071068 0.0000000
+10 0.0000000 0.5773503 0.0000000 0.0000000 0.5773503 0.0000000 0.5773503 0.0000000 0.0000000 0.0000000
+11 0.0000000 0.0000000 0.5773503 0.0000000 0.5773503 0.0000000 0.0000000 0.0000000 0.5773503 0.0000000
+12 0.5773503 0.0000000 0.0000000 0.0000000 0.0000000 0.5773503 0.5773503 0.0000000 0.0000000 0.0000000
+13 0.0000000 0.0000000 0.5000000 0.5000000 0.5000000 0.0000000 0.0000000 0.5000000 0.0000000 0.0000000
+14 0.0000000 0.5000000 0.5000000 0.5000000 0.0000000 0.0000000 0.0000000 0.0000000 0.5000000 0.0000000
+15 0.0000000 0.0000000 0.0000000 0.5000000 0.0000000 0.5000000 0.5000000 0.5000000 0.0000000 0.0000000
+16 0.5773503 0.0000000 0.0000000 0.0000000 0.0000000 0.5773503 0.0000000 0.0000000 0.5773503 0.0000000
+17 0.0000000 0.5000000 0.5000000 0.5000000 0.0000000 0.0000000 0.0000000 0.5000000 0.0000000 0.0000000
+18 0.0000000 0.0000000 0.0000000 0.7071068 0.0000000 0.0000000 0.0000000 0.0000000 0.7071068 0.0000000
+19 0.0000000 0.4472136 0.4472136 0.0000000 0.4472136 0.0000000 0.4472136 0.0000000 0.0000000 0.4472136
+20 0.0000000 0.0000000 0.5000000 0.5000000 0.0000000 0.0000000 0.5000000 0.0000000 0.5000000 0.0000000
+> normalized_profile_user1 = colSums(user_profiles_input[,1]*keyword_space_normalized[,1:10])
+> normalized_profile_user2 = colSums(user_profiles_input[,2]*keyword_space_normalized[,1:10])
+> normalized_profile_user1
+  baseball  economics   politics     Europe       Asia     soccer        war   security   shopping     family 
+ 1.7316706 -0.9472136 -0.5000000  0.2071068  0.0000000  1.0245639 -0.4472136 -0.5000000  0.5773503  0.0000000 
+> normalized_profile_user2
+   baseball   economics    politics      Europe        Asia      soccer         war    security    shopping      family 
+-1.02456386  1.00000000  1.05278640  1.50000000 -0.44721360 -1.02456386 -0.07735027  1.50000000  0.00000000 -0.44721360 
+> predict_normalized_liking_user1 = colSums((normalized_profile_user1) * t(keyword_space_normalized))
+> predict_normalized_liking_user2 = colSums((normalized_profile_user2) * t(keyword_space_normalized))
+> predict_normalized_liking_user1
+ [1]  1.00901875 -0.87005341  0.71110538 -0.62005341 -0.21354069  1.37092267 -0.35355339 -0.37005341  1.13272435 -0.80507291  0.04465820  1.33311385 -0.39644661 -0.33137827  0.14222853  1.92464607
+[17] -0.87005341  0.55469490 -0.84721360 -0.08137827
+> predict_normalized_liking_user2
+ [1] -0.84557739  2.52639320  0.01629429  1.98771807  0.31915138  0.33618412  0.74443241  1.01411127 -0.72447606  0.27449318  0.34962762 -1.22772264  1.80278640  1.77639320  0.94904293 -1.18306445
+[17]  2.52639320  1.06066017  0.48344190  1.23771807
+> predict_normalized_liking_user2[7]
+[1] 0.7444324
+> predict_normalized_liking_user2[19]
+[1] 0.4834419
+> sort(predict_normalized_liking_user1)
+ [1] -0.87005341 -0.87005341 -0.84721360 -0.80507291 -0.62005341 -0.39644661 -0.37005341 -0.35355339 -0.33137827 -0.21354069 -0.08137827  0.04465820  0.14222853  0.55469490  0.71110538  1.00901875
+[17]  1.13272435  1.33311385  1.37092267  1.92464607
+
+==========================================================================================================================================================
+5. 
+What prediction score does it have?
+Ans: 1.37092267
+
+==========================================================================================================================================================
+Part 3
+
+Compare doc1 and doc9 for user1. What’s user1’s prediction for doc9 in the new IDF weighted model?
+
+Ans: 0.179067194
+Check Excel for computations
+
+
+==========================================================================================================================================================
+
+Look at doc6 for User 2. It was moderately positive before and now is slightly negative. Why did that change?
+
+1) Because all the numbers went down in the new model.
+
+2) Because the article wasn’t actually that good to begin with.
+
+3) Because the user’s profile keeps changing.
+
+4) Because doc 6 has two attributes, a common one the user really likes (Europe) and a rare one the user dislikes (Baseball). In prior models, the fact that the user liked Europe more than s/he disliked baseball was decisive, but this model recognizes that Baseball is rarer than Europe, and therefore should have more weight (after all, there are plenty of other articles about Europe).
+Ans: 4
+
+==========================================================================================================================================================
+
+
+
+==========================================================================================================================================================
+
+
+
+==========================================================================================================================================================
