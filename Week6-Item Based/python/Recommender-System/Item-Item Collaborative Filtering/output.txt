@@ -1,0 +1,31 @@
+Test cases:
+0.6449952771633488
+-0.37777070255778844 
+Top 5 movies with most similirity to Toy Story:
+[('1: Toy Story (1995)', '1: Toy Story (1995)'), ('1: Toy Story (1995)', '260: Star Wars: Episode IV - A New Hope (1977)'), ('1: Toy Story (1995)', '780: Independence Day (ID4) (1996)'), ('1: Toy Story (1995)'
+, '296: Pulp Fiction (1994)'), ('1: Toy Story (1995)', '318: Shawshank Redemption, The (1994)'), ('1: Toy Story (1995)', '1265: Groundhog Day (1993)')] 
+Top 5 movies with highest recommendation to user 5277:
+["527: Schindler's List (1993)", '1259: Stand by Me (1986)', '260: Star Wars: Episode IV - A New Hope (1977)', '593: Silence of the Lambs, The (1991)', '2396: Shakespeare in Love (1998)', '1198: Raiders of the
+ Lost Ark (1981)'] 
+Top 5 movies with most similirity to Toy Story under normalization:
+[('1: Toy Story (1995)', '1: Toy Story (1995)'), ('1: Toy Story (1995)', '34: Babe (1995)'), ('1: Toy Story (1995)', '356: Forrest Gump (1994)'), ('1: Toy Story (1995)', '296: Pulp Fiction (1994)'), ('1: Toy S
+tory (1995)', '318: Shawshank Redemption, The (1994)'), ('1: Toy Story (1995)', '2028: Saving Private Ryan (1998)')] 
+Top 5 movies with highest recommendation to user 5277 under normalization:
+['260: Star Wars: Episode IV - A New Hope (1977)', "527: Schindler's List (1993)", '1259: Stand by Me (1986)', '2396: Shakespeare in Love (1998)', '593: Silence of the Lambs, The (1991)', '2028: Saving Private
+ Ryan (1998)'] 
+ 
+ 
+ 
+ 
+user_rated_items---- [('593: Silence of the Lambs, The (1991)', 4.0), ('1259: Stand by Me (1986)', 4.0), ('318: Shawshank Redemption, The (1994)', 2.0), ('2762: Sixth Sense, The (1999)', 1.0), ('260: Star Wars
+: Episode IV - A New Hope (1977)', 5.0), ('2916: Total Recall (1990)', 2.0), ('1: Toy Story (1995)', 1.0), ('2396: Shakespeare in Love (1998)', 3.0), ('1198: Raiders of the Lost Ark (1981)', 3.0), ("527: Schin
+dler's List (1993)", 5.0), ('3578: Gladiator (2000)', 2.0), ('780: Independence Day (ID4) (1996)', 2.0), ('1265: Groundhog Day (1993)', 2.0), ('User', 5277.0)] 
+
+
+
+preds---- {'593: Silence of the Lambs, The (1991)': 2.883304159272289, '1265: Groundhog Day (1993)': 2.6907197332431227, '1259: Stand by Me (1986)': 2.9288008978669, '318: Shawshank Redemption, The (1994)': 2.
+723963100019467, '2762: Sixth Sense, The (1999)': 2.7162671331726407, '1210: Star Wars: Episode VI - Return of the Jedi (1983)': 2.7742152158304085, '260: Star Wars: Episode IV - A New Hope (1977)': 2.92224013
+43343742, '2916: Total Recall (1990)': 2.701826141283955, '356: Forrest Gump (1994)': 2.7085502730962294, '2571: Matrix, The (1999)': 2.770176203123428, '1198: Raiders of the Lost Ark (1981)': 2.81815477462166
+26, "527: Schindler's List (1993)": 2.9738833825830238, '3578: Gladiator (2000)': 2.809766751978175, '2028: Saving Private Ryan (1998)': 2.780218122072276, '34: Babe (1995)': 2.610945418586956, '780: Independe
+nce Day (ID4) (1996)': 2.67495099953717, '1: Toy Story (1995)': 2.6668982678575537, '2396: Shakespeare in Love (1998)': 2.852130587480598, '296: Pulp Fiction (1994)': 2.8027971011907153, '541: Blade Runner (19
+82)': 2.7842520940793496} 
